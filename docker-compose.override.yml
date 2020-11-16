@@ -5,6 +5,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
+      - CustomerApiBaseAddress=http://fr8customerapi/
     ports:
       - "80"
       - "443"

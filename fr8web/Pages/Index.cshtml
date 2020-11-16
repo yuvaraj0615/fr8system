@@ -1,10 +1,70 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "FR8";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Freight System</h1>
+
+ 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerFreights.ToArray()[0].CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerFreights.ToArray()[0].CarrierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerFreights.ToArray()[0].FromState)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerFreights.ToArray()[0].ToState)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerFreights.ToArray()[0].LoadWeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerFreights.ToArray()[0].ChargeAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerFreights.ToArray()[0].TaxPersent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerFreights.ToArray()[0].TotalAmount)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CustomerFreights)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarrierName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoadWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChargeAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaxPersent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

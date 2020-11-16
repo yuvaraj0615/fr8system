@@ -24,6 +24,13 @@ namespace fr8web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            var customerBaseUrl = Environment.GetEnvironmentVariable("CustomerApiBaseAddress").ToString();
+
+            services.AddHttpClient("customerapi", c =>
+            {
+                c.BaseAddress = new Uri(customerBaseUrl);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
