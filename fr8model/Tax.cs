@@ -8,6 +8,6 @@ namespace fr8model
     {
         public int StateId { get; set; }
         public string StateName { get; set; }
-        public int TaxPercent { get; set; }
+        public decimal TaxPercent { get; set; }
     }
 }

@@ -1,7 +1,9 @@
+using fr8customerapi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +27,18 @@ namespace fr8customerapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var connectionString = Environment.GetEnvironmentVariable("CustomerDbConnectionUrl").ToString();
+            var taxBaseUrl = Environment.GetEnvironmentVariable("TaxApiBaseAddress").ToString();
+
+            services.AddDbContext<CustomerDbContext>(options =>
+                options.UseNpgsql(connectionString));
+
+            services.AddHttpClient("taxapi", c =>
+            {
+                c.BaseAddress = new Uri(taxBaseUrl);
+            });
+
             services.AddControllers();
         }
 
@@ -36,7 +50,7 @@ namespace fr8customerapi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

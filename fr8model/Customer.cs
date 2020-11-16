@@ -10,6 +10,6 @@ namespace fr8model
         public int LoadWeight { get; set; }
         public string FromState { get; set; }
         public string ToState { get; set; }
-        public int ChargeAmount { get; set; }
+        public decimal ChargeAmount { get; set; }
     }
 }

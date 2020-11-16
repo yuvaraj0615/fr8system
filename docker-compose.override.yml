@@ -22,6 +22,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
+      - CustomerDbConnectionUrl=Server=fr8db;port=5432;user id=freightuser;password=freightuser;database=freightdb;pooling=true
+      - TaxApiBaseAddress=http://fr8taxapi/
     ports:
       - "80"
       - "443"
@@ -32,11 +34,13 @@ services:
       - fr8-network
     depends_on:
       - fr8db
+      - fr8taxapi
 
   fr8taxapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
+      - DB_CONNECTION_STRING=Server=fr8db;port=5432;user id=freightuser;password=freightuser;database=freightdb;pooling=true
     ports:
       - "80"
       - "443"
