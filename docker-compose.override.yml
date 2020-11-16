@@ -1,0 +1,69 @@
+version: '3.4'
+
+services:
+  fr8web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - fr8-network
+    depends_on:
+      - fr8db
+      - fr8customerapi
+      - fr8taxapi
+
+  fr8customerapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - fr8-network
+    depends_on:
+      - fr8db
+
+  fr8taxapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - fr8-network
+    depends_on:
+      - fr8db
+
+  fr8db:
+    volumes:
+      - ./postgres-fr8data:/var/lib/postgresql/data
+      - ./dbscripts/seed.sql :/docker-entrypoint-initdb.d/seed.sql
+    ports:
+      - 5432 
+    environment:
+      - POSTGRES_USER=freightuser
+      - POSTGRES_PASSWORD=freightuser
+      - POSTGRES_DB=freightdb
+    networks:
+      - fr8-network
+
+volumes:
+  postgres-fr8data:
+
+networks:
+  fr8-network:
+    external: true

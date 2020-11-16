@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fr8web", "fr8web\fr8web.csproj", "{9E500244-77EC-4C63-8877-1424ADF757C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fr8customerapi", "fr8customerapi\fr8customerapi.csproj", "{6608D8D1-05BF-40FB-9E92-BF5BDCB4F8C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fr8taxapi", "fr8taxapi\fr8taxapi.csproj", "{B5740C6E-0647-4C0F-8BF7-4CBF4009DFFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fr8model", "fr8model\fr8model.csproj", "{EA06F324-2701-4276-9C4D-FA3262ABC19B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4942A4C7-F6D7-46A7-8BDB-C185AE1B0AFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dbscripts", "dbscripts", "{757051AC-FED8-471C-93F0-0D17B9245D13}"
+	ProjectSection(SolutionItems) = preProject
+		dbscripts\seed.sql = dbscripts\seed.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E500244-77EC-4C63-8877-1424ADF757C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E500244-77EC-4C63-8877-1424ADF757C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E500244-77EC-4C63-8877-1424ADF757C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E500244-77EC-4C63-8877-1424ADF757C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6608D8D1-05BF-40FB-9E92-BF5BDCB4F8C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6608D8D1-05BF-40FB-9E92-BF5BDCB4F8C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6608D8D1-05BF-40FB-9E92-BF5BDCB4F8C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6608D8D1-05BF-40FB-9E92-BF5BDCB4F8C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5740C6E-0647-4C0F-8BF7-4CBF4009DFFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5740C6E-0647-4C0F-8BF7-4CBF4009DFFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5740C6E-0647-4C0F-8BF7-4CBF4009DFFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5740C6E-0647-4C0F-8BF7-4CBF4009DFFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA06F324-2701-4276-9C4D-FA3262ABC19B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA06F324-2701-4276-9C4D-FA3262ABC19B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA06F324-2701-4276-9C4D-FA3262ABC19B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA06F324-2701-4276-9C4D-FA3262ABC19B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4942A4C7-F6D7-46A7-8BDB-C185AE1B0AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4942A4C7-F6D7-46A7-8BDB-C185AE1B0AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4942A4C7-F6D7-46A7-8BDB-C185AE1B0AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4942A4C7-F6D7-46A7-8BDB-C185AE1B0AFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65BB8C68-7E2D-442B-A874-5F35477A5D4C}
+	EndGlobalSection
+EndGlobal

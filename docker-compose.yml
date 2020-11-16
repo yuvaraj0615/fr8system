@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  fr8web:
+    image: ${DOCKER_REGISTRY-}fr8web
+    build:
+      context: .
+      dockerfile: fr8web/Dockerfile
+
+  fr8customerapi:
+    image: ${DOCKER_REGISTRY-}fr8customerapi
+    build:
+      context: .
+      dockerfile: fr8customerapi/Dockerfile
+
+
+  fr8taxapi:
+    image: ${DOCKER_REGISTRY-}fr8taxapi
+    build:
+      context: .
+      dockerfile: fr8taxapi/Dockerfile
+  
+  fr8db:
+    container_name: fr8appdb
+    image: postgres:10.4
+    restart: always
