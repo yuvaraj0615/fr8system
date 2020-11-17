@@ -20,6 +20,7 @@ namespace fr8model.DTO
         [Display(Name = "Tax")]
         public decimal TaxPersent { get; set; }
 
-        public string TotalAmount { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal TotalAmount { get; set; }
     }
 }

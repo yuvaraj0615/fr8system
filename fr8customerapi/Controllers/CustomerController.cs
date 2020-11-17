@@ -60,7 +60,7 @@ namespace fr8customerapi.Controllers
                 LoadWeight = s.LoadWeight,
                 ChargeAmount = s.ChargeAmount,
                 TaxPersent = tax,
-                TotalAmount = total.ToString("C")
+                TotalAmount = total
             };
         }
         
