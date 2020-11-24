@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 namespace fr8customerapi.Controllers
 {
 
+    [Produces("application/json")]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomersController : ControllerBase
@@ -30,6 +31,10 @@ namespace fr8customerapi.Controllers
             _taxClientFactory = httpClientFactory;
         }
 
+        /// <summary>
+        /// Get Customer freight quote information
+        /// </summary>
+        /// <returns>Return customer freight quote details</returns>
         [HttpGet]
         public async Task<IEnumerable<CustomerFreightDto>> Get()
         {
@@ -85,6 +90,11 @@ namespace fr8customerapi.Controllers
             return tax.TaxPercent;
         }
 
+        /// <summary>
+        /// Get customer freight quote information by customer name
+        /// </summary>
+        /// <param name="customerName">Customer Name</param>
+        /// <returns>Return custoemr freight quote details</returns>
         [HttpGet("{customerName}")]
         public Customer GetCustomer(string customerName)
         {
