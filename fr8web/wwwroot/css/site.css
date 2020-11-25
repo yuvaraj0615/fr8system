@@ -69,3 +69,15 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.ag-theme-balham .bigexpense-warning {
+    background-color: sandybrown !important;
+}
+
+.ag-theme-balham .bigexpense-breach {
+    background-color: lightcoral !important;
+}
+
+.ag-theme-balham .bigexpense-ok {
+    background-color: mediumseagreen !important;
+}

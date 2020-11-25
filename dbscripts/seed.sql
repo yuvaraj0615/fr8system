@@ -25,7 +25,15 @@ INSERT INTO customer(customername, carriername, loadweight, fromstate, tostate, 
     ( 'James','FedEx', 1000, 'AL', 'IL', 20.50),
     ( 'Marshall','UPS', 2000, 'AL', 'NY', 50.0),
     ( 'Willie','FedEx', 3000, 'TX', 'GA', 100.0),
-    ( 'Wallace','FedEx', 1000, 'TX', 'NY', 15.0);
+    ( 'Wallace','FedEx', 1000, 'TX', 'NY', 15.0),
+    ( 'Malcom','FedEx', 1000, 'AL', 'IL', 20.50),
+    ( 'Abbey','UPS', 2200, 'AL', 'NY', 50.0),
+    ( 'Mark','FedEx', 3300, 'TX', 'GA', 100.0),
+    ( 'April','FedEx', 1010, 'TX', 'NY', 15.0),
+    ( 'Brook','FedEx', 1100, 'AL', 'IL', 20.50),
+    ( 'Latasha','UPS', 2050, 'AL', 'NY', 50.0),
+    ( 'Jenny','FedEx', 3060, 'TX', 'GA', 100.0),
+    ( 'Kamala','FedEx', 3000, 'TX', 'NY', 15.0);
 
 INSERT INTO tax(statename, taxpercent) VALUES
     ('AL', 10.0),

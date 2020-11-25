@@ -25,8 +25,15 @@ namespace fr8web.Pages
 
         public async Task OnGet()
         {
+            CustomerFreights = await GetFreightQuotes();
+        }
+
+        private async Task<IEnumerable<CustomerFreightDto>> GetFreightQuotes()
+        {
+            IEnumerable<CustomerFreightDto> freightDtos;
+
             var request = new HttpRequestMessage(HttpMethod.Get,
-                    $"api/customers");
+                   $"api/customers");
 
             var client = _clientFactory.CreateClient("customerapi");
 
@@ -36,13 +43,23 @@ namespace fr8web.Pages
             if (response.IsSuccessStatusCode)
             {
                 var responseStream = await response.Content.ReadAsStreamAsync();
-                CustomerFreights = await JsonSerializer.DeserializeAsync<IEnumerable<CustomerFreightDto>>(responseStream,
+                freightDtos = await JsonSerializer.DeserializeAsync<IEnumerable<CustomerFreightDto>>(responseStream,
                         new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             }
             else
             {
-                CustomerFreights = Array.Empty<CustomerFreightDto>();
+                freightDtos = Array.Empty<CustomerFreightDto>();
             }
+
+            return freightDtos;
         }
+
+        public async Task<JsonResult> OnGetArrayData()
+        {
+            CustomerFreights = await GetFreightQuotes();
+
+            return new JsonResult(CustomerFreights);
+        }
+
     }
 }

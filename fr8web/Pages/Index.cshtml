@@ -4,9 +4,9 @@
     ViewData["Title"] = "FR8";
 }
 
-<h1>Freight System</h1>
+@*<h1>Freight System</h1>
 
- 
+
 <table class="table">
     <thead>
         <tr>
@@ -39,32 +39,100 @@
     <tbody>
         @foreach (var item in Model.CustomerFreights)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CarrierName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FromState)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ToState)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LoadWeight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChargeAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaxPersent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalAmount)
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarrierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FromState)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToState)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoadWeight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChargeAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaxPersent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+            </tr>
         }
     </tbody>
-</table>
+</table>*@
+
+
+<script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+<h1>Quotes</h1>
+
+<div id="myGrid" style="height: 300px;width:1000px;" class="ag-theme-balham"></div>
+
+<script type="text/javascript" charset="utf-8">
+
+    // specify the columns
+    var columnDefs = [
+        { headerName: "Customer", field: "customerName", resizable: true },
+        { headerName: "Carrier", field: "carrierName", resizable: true},
+        { headerName: "From State", field: "fromState", resizable: false},
+        { headerName: "To State", field: "toState", resizable: false},
+        { headerName: "LoadWeight", field: "loadWeight", resizable: false },
+        { headerName: 'ChargeAmount', field: 'chargeAmount', valueFormatter: currencyFormatter },
+        { headerName: "Tax(%)", field: "taxPersent", resizable: false },
+        {
+            headerName: 'Amount',
+            field: 'totalAmount',
+            valueFormatter: currencyFormatter
+            //valueFormatter: params => currencyFormatter(params.data.currency, '$'),
+            //filter: 'agNumberColumnFilter',
+            //filterParams: {
+            //    suppressAndOrCondition: true,
+            //    filterOptions: ['greaterThan'],
+            //},
+        },
+    ];
+
+    // let the grid know which columns to use
+    var gridOptions = {
+        columnDefs: columnDefs,
+        defaultColDef: {
+            sortable: true,
+            filter: true,
+            width: 120
+        },
+        rowHeight: 35,
+        pagination: true,
+        paginationPageSize: 5
+         
+    };
+
+    // lookup the container we want the Grid to use
+    var eGridDiv = document.querySelector('#myGrid');
+
+    // create the grid passing in the div to use together with the columns & data we want to use
+    new agGrid.Grid(eGridDiv, gridOptions);
+
+    agGrid.simpleHttpRequest({ url: './Index?handler=ArrayData' }).then(function (data) {
+        gridOptions.api.setRowData(data);
+    });
+
+    function currencyFormatter(params) {
+        return '$' + formatNumber(params.value);
+    }
+
+    function formatNumber(number) {
+        // this puts commas into the number eg 1000 goes to 1,000,
+        // i pulled this from stack overflow, i have no idea how it works
+        return Math.floor(number)
+            .toString()
+            .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    }
+
+</script>
