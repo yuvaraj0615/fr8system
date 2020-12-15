@@ -15,7 +15,7 @@ services:
     networks:
       - fr8-network
     depends_on:
-      - fr8db
+#      - fr8db
       - fr8customerapi
       - fr8taxapi
 
@@ -23,7 +23,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - CustomerDbConnectionUrl=Server=fr8db;port=5432;user id=freightuser;password=freightuser;database=freightdb;pooling=true
+      - DBServer=psql-referenceprod-dev-eastus-01.postgres.database.azure.com
+      - DBUser=fr8user
+      - DBPassword=Password1
+      - Database=psqldb-referenceprod-dev-eastus-01
       - TaxApiBaseAddress=http://fr8taxapi/
     ports:
       - "80"
@@ -34,14 +37,17 @@ services:
     networks:
       - fr8-network
     depends_on:
-      - fr8db
+#      - fr8db
       - fr8taxapi
 
   fr8taxapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - DB_CONNECTION_STRING=Server=fr8db;port=5432;user id=freightuser;password=freightuser;database=freightdb;pooling=true
+      - DBServer=psql-referenceprod-dev-eastus-01.postgres.database.azure.com
+      - DBUser=fr8user
+      - DBPassword=Password1
+      - Database=psqldb-referenceprod-dev-eastus-01
     ports:
       - "80"
       - "443"
@@ -50,24 +56,24 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
       - fr8-network
-    depends_on:
-      - fr8db
+#    depends_on:
+#      - fr8db
 
-  fr8db:
-    volumes:
-      - ./postgres-fr8data:/var/lib/postgresql/data
-      - ./dbscripts/seed.sql :/docker-entrypoint-initdb.d/seed.sql
-    ports:
-      - 5432 
-    environment:
-      - POSTGRES_USER=freightuser
-      - POSTGRES_PASSWORD=freightuser
-      - POSTGRES_DB=freightdb
-    networks:
-      - fr8-network
+#  fr8db:
+#    volumes:
+#      - ./postgres-fr8data:/var/lib/postgresql/data
+#      - ./dbscripts/seed.sql :/docker-entrypoint-initdb.d/seed.sql
+#    ports:
+#      - 5432 
+#    environment:
+#      - POSTGRES_USER=freightuser
+#      - POSTGRES_PASSWORD=freightuser
+#      - POSTGRES_DB=freightdb
+#    networks:
+#      - fr8-network
 
-volumes:
-  postgres-fr8data:
+#volumes:
+#  postgres-fr8data:
 
 networks:
   fr8-network:

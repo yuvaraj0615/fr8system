@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,11 +28,27 @@ namespace fr8taxapi
 
         public IConfiguration Configuration { get; }
 
+
+        private string GetAccessToken(string tenantId)
+        {
+            var azureServiceTokenProvider = new AzureServiceTokenProvider();
+
+            string accessToken = azureServiceTokenProvider.GetAccessTokenAsync("https://ossrdbms-aad.database.windows.net", tenantId).Result;
+            return accessToken;
+
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING").ToString();
+
+            var dbServer = Environment.GetEnvironmentVariable("DBServer").ToString();
+            var database = Environment.GetEnvironmentVariable("Database").ToString();
+            var dbUser = Environment.GetEnvironmentVariable("DBUser").ToString();
+            var dbPassword = Environment.GetEnvironmentVariable("DBPassword").ToString();
+
+            string connectionString = $"Server={dbServer};port=5432;user id={dbUser}@{dbServer};password={dbPassword};database={database};pooling=true";
+
             services.AddDbContext<TaxDbContext>(options =>
                 options.UseNpgsql(connectionString));
 

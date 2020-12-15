@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: fr8taxapi/Dockerfile
   
-  fr8db:
-    container_name: fr8appdb
-    image: postgres:10.4
-    restart: always
+#  fr8db:
+#    container_name: fr8appdb
+#    image: postgres:10.4
+#    restart: always
